@@ -2,7 +2,7 @@ import 'package:banking_app/data_json/balance_json.dart';
 import 'package:banking_app/pages/card_page.dart';
 import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class DashbaordPage extends StatefulWidget {
   const DashbaordPage({Key? key}) : super(key: key);

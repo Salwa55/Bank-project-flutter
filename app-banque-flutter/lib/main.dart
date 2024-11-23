@@ -1,4 +1,4 @@
-// @dart=2.9
+// @dart=2.12
 
 import 'package:banking_app/pages/root_app.dart';
 import 'package:flutter/material.dart';

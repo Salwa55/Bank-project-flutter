@@ -2,7 +2,7 @@ import 'package:banking_app/data_json/card_json.dart';
 import 'package:banking_app/data_json/card_operations_json.dart';
 import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class CardPage extends StatefulWidget {
   const CardPage({Key? key}) : super(key: key);
