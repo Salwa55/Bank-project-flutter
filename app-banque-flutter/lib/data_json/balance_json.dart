@@ -1,6 +1,11 @@
 const List balanceLists = [
   {
     "amount": "18 199.24",
+    "currency" : "DH",
+    "description": "MAD - Maroc"
+  },
+  {
+    "amount": "18 199.24",
     "currency" : "\$",
     "description": "USD - Dollar"
   },
@@ -8,10 +13,5 @@ const List balanceLists = [
     "amount": "21 021.43",
     "currency" : "€",
     "description":"EUR - Euro",
-  },
-  {
-    "amount": "32 543.76",
-    "currency" : "£",
-    "description":"GBP - Pound sterling",
   }
 ];

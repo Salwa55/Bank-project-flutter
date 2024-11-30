@@ -28,13 +28,18 @@ class _DashbaordPageState extends State<DashbaordPage> {
   Widget getAppBar() {
     return AppBar(
       elevation: 0,
-      backgroundColor: primary,
+      backgroundColor:const Color.fromARGB(255, 164, 172, 134),
       leading: IconButton(
           onPressed: () {},
           icon: CircleAvatar(
-            backgroundImage: NetworkImage(
-                "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9ydHJhaXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"),
-          )),
+           radius: 40,
+           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+           child: Icon(
+              Icons.person, // Icône utilisateur
+              size: 40,
+              color:  const Color.fromARGB(255, 65, 72, 51), // Couleur de l'icône
+           ),
+         )),
       actions: [IconButton(onPressed: () {}, icon: Icon(AntDesign.search1))],
     );
   }
@@ -129,31 +134,14 @@ class _DashbaordPageState extends State<DashbaordPage> {
                               borderRadius: BorderRadius.circular(12)),
                           child: Center(
                             child: Text(
-                              "Add money",
+                              "Opérations",
                               style: TextStyle(
                                   color: white, fontWeight: FontWeight.w500),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Flexible(
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: secondary.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: Center(
-                            child: Text(
-                              "Exchange",
-                              style: TextStyle(
-                                  color: white, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        ),
-                      ),
+                 
                       SizedBox(
                         width: 15,
                       ),
@@ -188,7 +176,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Accounts",
+            "Compte",
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -329,39 +317,40 @@ class _DashbaordPageState extends State<DashbaordPage> {
           SizedBox(
             height: 25,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Cards",
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-              ),
-              Container(
-                width: 90,
-                height: 22,
-                decoration: BoxDecoration(
-                    color: secondary.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Ionicons.ios_add,
-                      size: 16,
-                      color: primary,
-                    ),
-                    Text(
-                      "ADD CARD",
-                      style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: primary),
-                    )
-                  ],
-                ),
-              )
-            ],
+      
+      
+     Row(
+  mainAxisAlignment: MainAxisAlignment.end, // Alignement de la Row à droite
+  children: [
+    Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8), // Espacement autour du contenu
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 223, 252, 179).withOpacity(0.1), // Couleur de fond du Container
+        borderRadius: BorderRadius.circular(8), // Coins arrondis
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Ionicons.ios_add,
+            size: 16,
+            color: primary, // Couleur de l'icône
           ),
+          SizedBox(width: 10), // Espacement entre l'icône et le texte
+          Text(
+            "Compte d'épargne",
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: primary, // Couleur du texte
+            ),
+          ),
+        ],
+      ),
+    ),
+  ],
+)
+
+,
           SizedBox(
             height: 15,
           ),
@@ -421,9 +410,6 @@ class _DashbaordPageState extends State<DashbaordPage> {
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.w600),
                         )
-                      
-                    
-                    
                       ],
                     )
                   ],
