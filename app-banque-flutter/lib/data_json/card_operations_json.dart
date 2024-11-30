@@ -2,19 +2,15 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 const List cardOperations = [
   {
-    "icon" : AntDesign.creditcard,
-    "title" : "Top up card"
+    "icon" : MaterialCommunityIcons.toggle_switch,
+    "title" : "Blockage"
   },
   {
-    "icon" : AntDesign.wallet,
-    "title" : "Payments"
+    "icon" : AntDesign.swap,
+    "title" : "Virement"
   },
   {
-    "icon" : AntDesign.arrowright,
-    "title" : "Card output"
-  },
-  {
-    "icon" : AntDesign.creditcard,
-    "title" : "Take all the money from the card"
+    "icon" : AntDesign.phone,
+    "title" : "Effectuer une recharge"
   }
 ];

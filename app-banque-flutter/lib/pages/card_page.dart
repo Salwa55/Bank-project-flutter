@@ -106,7 +106,7 @@ class _CardPageState extends State<CardPage> {
                                       BorderSide(color: primary, width: 3.5))),
                           child: Center(
                             child: Text(
-                              "Operations",
+                              "Opérations",
                               style: TextStyle(
                                   fontSize: 15,
                                   color: primary,
@@ -126,7 +126,7 @@ class _CardPageState extends State<CardPage> {
                                       width: 1))),
                           child: Center(
                             child: Text(
-                              "History",
+                              "Historique",
                               style: TextStyle(
                                   fontSize: 15,
                                   color: primary.withOpacity(0.5),
