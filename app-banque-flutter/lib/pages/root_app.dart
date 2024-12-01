@@ -3,6 +3,9 @@ import 'package:banking_app/pages/dashboard_page.dart';
 import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:banking_app/pages/AccountPage.dart';
+
+
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
@@ -51,11 +54,8 @@ class _RootAppState extends State<RootApp> {
             fontWeight: FontWeight.bold
           ),),
         ),
-        Center(
-          child: Text("Account Page",style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-          ),),
+       Center(
+          child: AccountPage(),
         ),
         Center(
           child: Text("Card Page",style: TextStyle(
