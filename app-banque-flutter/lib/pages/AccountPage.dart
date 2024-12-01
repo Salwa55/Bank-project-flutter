@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:banking_app/theme/color.dart';
 
 class AccountPage extends StatelessWidget {
@@ -8,98 +7,80 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Informations de profil', style: TextStyle(color: black)),
-        backgroundColor: white,
+        title: Text(
+          'Informations de profil',
+          style: TextStyle(color: const Color.fromARGB(255, 65, 72, 51)),
+        ),
+        backgroundColor: Colors.white,
         elevation: 0,
-        iconTheme: IconThemeData(color: black),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile Section
+            // Profil Section
             Center(
-              child: Stack(
+              child: Column(
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundImage: NetworkImage(
-                        'https://www.w3schools.com/w3images/avatar2.png'), // Remplacez par l'URL de l'image de profil
+                    backgroundColor: Colors.grey[300],
+                    child: Icon(Icons.person, size: 80, color:const Color.fromARGB(255, 65, 72, 51)),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: IconButton(
-                      icon: Icon(Ionicons.ios_create, color: primary),
-                      onPressed: () {
-                        // Ajoutez ici la logique de modification de l'image de profil
-                      },
-                    ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Salwa Bounajra',
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 20),
-            // User Name
+            SizedBox(height: 30),
+            // Informations personnelles
             Text(
-              'Salwa Bounajra', // Utilisez le nom dynamique ici
+              'Informations personnelles',
               style: TextStyle(
-                  fontSize: 22, fontWeight: FontWeight.bold, color: black),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
+            Divider(thickness: 1, color: Colors.grey[300]),
             SizedBox(height: 10),
-            // User Email
             Text(
-              'salwa@example.com', // Utilisez l'email dynamique ici
-              style: TextStyle(fontSize: 16, color: grey),
+              'Adresse : Temara',
+              style: TextStyle(fontSize: 16, color: Colors.black),
+            ),
+            SizedBox(height: 5),
+            Text(
+              'Code postal : 22000',
+              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
             SizedBox(height: 30),
-            // Action buttons
-            ElevatedButton(
-              onPressed: () {
-                // Logique pour modifier le profil
-              },
-              child: Text('Modifier le profil'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primary,
-                padding: EdgeInsets.symmetric(vertical: 15),
-                textStyle: TextStyle(fontSize: 16),
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Logique pour se déconnecter
-              },
-              child: Text('Se déconnecter'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                padding: EdgeInsets.symmetric(vertical: 15),
-                textStyle: TextStyle(fontSize: 16),
-              ),
-            ),
-            SizedBox(height: 20),
-            // Settings Section
+            // Contact
             Text(
-              'Paramètres',
+              'Contact',
               style: TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.bold, color: black),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
-            ListTile(
-              leading: Icon(Ionicons.ios_settings, color: primary),
-              title: Text('Paramètres du compte'),
-              onTap: () {
-                // Logique pour les paramètres
-              },
+            Divider(thickness: 1, color: Colors.grey[300]),
+            SizedBox(height: 10),
+            Text(
+              'Téléphone : 0666666',
+              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
-            ListTile(
-              leading: Icon(Ionicons.lock_closed, color: primary),
-              title: Text('Sécurité'),
-              onTap: () {
-                // Logique pour les paramètres de sécurité
-              },
+            SizedBox(height: 5),
+            Text(
+              'E-mail : salwa@gmail.com',
+              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
           ],
         ),
