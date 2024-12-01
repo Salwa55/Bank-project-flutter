@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:banking_app/theme/color.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({Key? key}) : super(key: key);

@@ -4,8 +4,7 @@ import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:banking_app/pages/AccountPage.dart';
-
-
+import 'package:banking_app/pages/card_page.dart'; // Import de la page CardPage
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
@@ -16,25 +15,29 @@ class RootApp extends StatefulWidget {
 
 class _RootAppState extends State<RootApp> {
   int pageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: white,
-        bottomNavigationBar: getFooter(),
-        body: getBody(),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              selectedTab(4);
-            },
-            child: Icon(
-              AntDesign.creditcard,
-              size: 25,
-            ),
-            backgroundColor: primary
-            //params
-            ),
-        floatingActionButtonLocation:
-            FloatingActionButtonLocation.centerDocked);
+      backgroundColor: white,
+      bottomNavigationBar: getFooter(),
+      body: getBody(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Naviguer vers CardPage au lieu de changer l'index dans l'IndexedStack
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CardPage()),
+          );
+        },
+        child: Icon(
+          AntDesign.creditcard,
+          size: 25,
+        ),
+        backgroundColor: primary,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
   }
 
   Widget getBody() {
@@ -43,25 +46,25 @@ class _RootAppState extends State<RootApp> {
       children: [
         DashbaordPage(),
         Center(
-          child: Text("Chat Page",style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-          ),),
+          child: Text(
+            "Chat Page",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
         Center(
-          child: Text("Notification Page",style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-          ),),
+          child: Text(
+            "Notification Page",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
-       Center(
+        Center(
           child: AccountPage(),
         ),
         Center(
-          child: Text("Card Page",style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold
-          ),),
+          child: Text(
+            "Card Page",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
         ),
       ],
     );
@@ -89,7 +92,6 @@ class _RootAppState extends State<RootApp> {
       onTap: (index) {
         selectedTab(index);
       },
-      //other params
     );
   }
 

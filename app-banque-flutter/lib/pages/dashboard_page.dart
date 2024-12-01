@@ -3,6 +3,8 @@ import 'package:banking_app/pages/card_page.dart';
 import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:banking_app/pages/AccountPage.dart';
+
 
 class DashbaordPage extends StatefulWidget {
   const DashbaordPage({Key? key}) : super(key: key);
@@ -26,23 +28,30 @@ class _DashbaordPageState extends State<DashbaordPage> {
   }
 
   Widget getAppBar() {
-    return AppBar(
-      elevation: 0,
-      backgroundColor:const Color.fromARGB(255, 164, 172, 134),
-      leading: IconButton(
-          onPressed: () {},
-          icon: CircleAvatar(
-           radius: 40,
-           backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-           child: Icon(
-              Icons.person, // Icône utilisateur
-              size: 40,
-              color:  const Color.fromARGB(255, 65, 72, 51), // Couleur de l'icône
-           ),
-         )),
-      actions: [IconButton(onPressed: () {}, icon: Icon(AntDesign.search1))],
-    );
-  }
+  return AppBar(
+    elevation: 0,
+    backgroundColor: const Color.fromARGB(255, 164, 172, 134),
+    leading: IconButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const AccountPage()),
+        );
+      },
+      icon: CircleAvatar(
+        radius: 40,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        child: Icon(
+          Icons.person, // Icône utilisateur
+          size: 40,
+          color: const Color.fromARGB(255, 65, 72, 51), // Couleur de l'icône
+        ),
+      ),
+    ),
+    actions: [IconButton(onPressed: () {}, icon: Icon(AntDesign.search1))],
+  );
+}
+
 
   Widget getBody() {
    

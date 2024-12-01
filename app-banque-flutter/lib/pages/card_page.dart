@@ -12,6 +12,8 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
+  int selectedTab = 0; // 0 pour "Opérations", 1 pour "Historique"
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,8 +65,8 @@ class _CardPageState extends State<CardPage> {
               controller: controller,
               children: List.generate(cardLists.length, (index) {
                 return getCards(
-                   cardLists[index]['amount'],
-                    cardLists[index]['currency'],
+                  cardLists[index]['amount'],
+                  cardLists[index]['currency'],
                   cardLists[index]['card_number'],
                   cardLists[index]['valid_date'],
                   cardLists[index]['bg_color'],
@@ -85,7 +87,6 @@ class _CardPageState extends State<CardPage> {
                   color: grey.withOpacity(0.1),
                   spreadRadius: 10,
                   blurRadius: 10,
-                  // changes position of shadow
                 ),
               ],
             ),
@@ -97,40 +98,63 @@ class _CardPageState extends State<CardPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Flexible(
-                        child: Container(
-                          width: size.width / 2,
-                          height: 55,
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom:
-                                      BorderSide(color: primary, width: 3.5))),
-                          child: Center(
-                            child: Text(
-                              "Opérations",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: primary,
-                                  fontWeight: FontWeight.w600),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedTab = 0; // Activer "Opérations"
+                            });
+                          },
+                          child: Container(
+                            width: size.width / 2,
+                            height: 55,
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: selectedTab == 0
+                                            ? primary
+                                            : black.withOpacity(0.05),
+                                        width: selectedTab == 0 ? 3.5 : 1))),
+                            child: Center(
+                              child: Text(
+                                "Opérations",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: selectedTab == 0
+                                        ? primary
+                                        : primary.withOpacity(0.5),
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ),
                           ),
                         ),
                       ),
                       Flexible(
-                        child: Container(
-                          width: size.width / 2,
-                          height: 55,
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color: black.withOpacity(0.05),
-                                      width: 1))),
-                          child: Center(
-                            child: Text(
-                              "Historique",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: primary.withOpacity(0.5),
-                                  fontWeight: FontWeight.w600),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedTab = 1; // Activer "Historique"
+                            });
+                          },
+                          child: Container(
+                            width: size.width / 2,
+                            height: 55,
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: selectedTab == 1
+                                            ? primary
+                                            : black.withOpacity(0.05),
+                                        width: selectedTab == 1 ? 3.5 : 1))),
+                            child: Center(
+                              child: Text(
+                                "Historique",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: selectedTab == 1
+                                        ? primary
+                                        : primary.withOpacity(0.5),
+                                    fontWeight: FontWeight.w600),
+                              ),
                             ),
                           ),
                         ),
@@ -141,56 +165,77 @@ class _CardPageState extends State<CardPage> {
                 SizedBox(
                   height: 20,
                 ),
-                Column(
-                  children: List.generate(cardOperations.length, (index) {
-                    return Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20,bottom: 20),
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: grey.withOpacity(0.1),
-                          spreadRadius: 10,
-                          blurRadius: 10,
-                          // changes position of shadow
-                        ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Row(
-                        children: [
-                          Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: secondary.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Center(
-                          child: Icon(
-                           cardOperations[index]['icon'],
-                            color: primary,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15,),
-                      Text(
-                        cardOperations[index]['title'],
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600),
+                // Affichage selon l'onglet sélectionné
+                selectedTab == 0
+                    ? Column(
+                        children: List.generate(cardOperations.length, (index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 20, bottom: 20),
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(15),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: grey.withOpacity(0.1),
+                                    spreadRadius: 10,
+                                    blurRadius: 10,
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          color: secondary.withOpacity(0.3),
+                                          borderRadius:
+                                              BorderRadius.circular(12)),
+                                      child: Center(
+                                        child: Icon(
+                                          cardOperations[index]['icon'],
+                                          color: primary,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    Text(
+                                      cardOperations[index]['title'],
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
                       )
+                    : Column(
+                        children: [
+                          // Exemple de contenu "Historique"
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Text(
+                              "Historique des transactions à afficher ici.",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w600),
+                            ),
+                          )
                         ],
                       ),
-                    ),
-                  ),
-                );
-                  }),
-                ),
-                SizedBox(height: 30,)
+                SizedBox(
+                  height: 30,
+                )
               ],
             ),
           )
@@ -199,7 +244,7 @@ class _CardPageState extends State<CardPage> {
     );
   }
 
-  Widget getCards(amount,currency,cardNumber, validDate, bgColor) {
+  Widget getCards(amount, currency, cardNumber, validDate, bgColor) {
     var size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -219,7 +264,7 @@ class _CardPageState extends State<CardPage> {
               width: 5,
             ),
             Text(
-             amount,
+              amount,
               style: TextStyle(
                   fontSize: 35, color: black, fontWeight: FontWeight.bold),
             ),
