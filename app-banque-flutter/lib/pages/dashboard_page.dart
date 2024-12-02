@@ -1,4 +1,5 @@
 import 'package:banking_app/data_json/balance_json.dart';
+import 'package:banking_app/pages/Operations.dart';
 import 'package:banking_app/pages/ReglementEpargne.dart';
 import 'package:banking_app/pages/card_page.dart';
 import 'package:banking_app/theme/color.dart';
@@ -132,37 +133,52 @@ class _DashbaordPageState extends State<DashbaordPage> {
                   ),
                 ),
               ),
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Flexible(
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: secondary.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: Center(
-                            child: Text(
-                              "Opérations",
-                              style: TextStyle(
-                                  color: white, fontWeight: FontWeight.w500),
-                            ),
+
+             Expanded(
+              child: Container(
+              width: double.infinity,
+              child: Row(
+              children: [
+              SizedBox(
+              width: 15,
+            ),
+            Flexible(
+            child: GestureDetector(
+            onTap: () {
+              // Redirection vers la page Operations
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => Operations(), // Remplacez par votre classe Operations
+                ),
+              );
+            },
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                color: secondary.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Text(
+                  "Opérations",
+                  style: TextStyle(
+                    color: white,
+                    fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
-                 
-                      SizedBox(
-                        width: 15,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              )
+                SizedBox(
+                  width: 15,
+                ),
+              ],
+            ),
+          ),
+        ),
+
             ],
           ),
         ),

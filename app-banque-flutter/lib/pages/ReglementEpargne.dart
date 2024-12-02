@@ -23,6 +23,12 @@ class SavingAccountPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Compte d\'épargne'),
         backgroundColor: primary,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Retour à l'écran précédent
+          },
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -31,7 +37,11 @@ class SavingAccountPage extends StatelessWidget {
           children: [
             Text(
               'Fructifiez votre épargne et disposez de votre argent à tout moment',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 66, 35)),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: const Color.fromARGB(255, 0, 66, 35),
+              ),
             ),
             SizedBox(height: 16),
             Text(
@@ -41,7 +51,11 @@ class SavingAccountPage extends StatelessWidget {
             SizedBox(height: 24),
             Text(
               'Ses avantages ?',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 66, 35)),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: const Color.fromARGB(255, 0, 66, 35),
+              ),
             ),
             SizedBox(height: 16),
             _buildAdvantageItem(
@@ -57,27 +71,26 @@ class SavingAccountPage extends StatelessWidget {
               'Exclusivement chez FSA Bank, vos opérations sont comptabilisées le jour même de leur exécution, sans date de valeur différente, ce qui vous permet de bénéficier d’une meilleure rémunération.',
             ),
             SizedBox(height: 32),
-           Center(
-            child: ElevatedButton(
-            onPressed: () {
-            Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CompteEpargne(),
-            ),
-          );
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: primary,
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        ),
-        child: Text(
-          'OUVRIR UN COMPTE D\'EPARGNE',
-          style: TextStyle(fontSize: 16),
-        ),
-      ),
-    )
-
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CompteEpargne(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primary,
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                ),
+                child: Text(
+                  'OUVRIR UN COMPTE D\'EPARGNE',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            )
           ],
         ),
       ),

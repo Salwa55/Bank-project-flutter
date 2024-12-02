@@ -16,6 +16,15 @@ class CardPage extends StatefulWidget {
 class _CardPageState extends State<CardPage> {
   int selectedTab = 0; // 0 pour "Opérations", 1 pour "Historique"
 
+  // Données simulées pour l'historique
+  List<Map<String, String>> historyData = [
+    {'montant': '-100', 'motif': 'Virement'},
+    {'montant': '+50', 'motif': 'Réception'},
+    {'montant': '-200', 'motif': 'Paiement'},
+    {'montant': '+150', 'motif': 'Virement reçu'},
+    {'montant': '-75', 'motif': 'Achat en ligne'},
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -176,18 +185,24 @@ class _CardPageState extends State<CardPage> {
                                 left: 20, right: 20, bottom: 20),
                             child: GestureDetector(
                               onTap: () {
-                               if (cardOperations[index]['title'] == "Virement") {
-                               Navigator.push(context,MaterialPageRoute(
-                               builder: (_) => VerificationPage(valeur: 1),  // Passer la valeur 1 à VerificationPage
-                                ),
-                             );
-                                } else if(cardOperations[index]['title'] == "Effectuer une recharge"){
-                                  Navigator.push(context,MaterialPageRoute(
-                                  builder: (_) => RechargePage(),
-                                ),
-                             );
-                                  }
-                                  else{
+                                if (cardOperations[index]['title'] ==
+                                    "Virement") {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          VerificationPage(valeur: 1),
+                                    ),
+                                  );
+                                } else if (cardOperations[index]['title'] ==
+                                    "Effectuer une recharge") {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => RechargePage(),
+                                    ),
+                                  );
+                                } else {
                                   print(
                                       "Autre opération : ${cardOperations[index]['title']}");
                                 }
@@ -242,16 +257,38 @@ class _CardPageState extends State<CardPage> {
                         }),
                       )
                     : Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Text(
-                              "Historique des transactions à afficher ici.",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w600),
+                        children: List.generate(historyData.length, (index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20, right: 20, bottom: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Montant
+                                Text(
+                                  historyData[index]['montant']!,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: historyData[index]['montant']!
+                                            .startsWith('-')
+                                        ? Colors.red
+                                        : Colors.green,
+                                  ),
+                                ),
+                                // Motif
+                                Text(
+                                  historyData[index]['motif']!,
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                          )
-                        ],
+                          );
+                        }),
                       ),
                 SizedBox(
                   height: 30,
@@ -299,62 +336,40 @@ class _CardPageState extends State<CardPage> {
           decoration: BoxDecoration(
               color: bgColor, borderRadius: BorderRadius.circular(12)),
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Icon(
-                      Feather.credit_card,
-                      size: 30,
-                      color: white.withOpacity(0.3),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
                     Text(
-                      cardNumber,
+                      "**** **** **** $cardNumber",
                       style: TextStyle(
-                          color: white.withOpacity(0.8),
                           fontSize: 20,
-                          wordSpacing: 15),
+                          color: white,
+                          fontWeight: FontWeight.bold),
                     )
                   ],
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "VALID DATE",
-                          style: TextStyle(
-                              color: white.withOpacity(0.3), fontSize: 12),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          validDate,
-                          style: TextStyle(color: white, fontSize: 13),
-                        ),
-                      ],
+                    Text(
+                      "VALID THRU",
+                      style: TextStyle(fontSize: 13, color: white),
                     ),
-                    Image.asset(
-                      "assets/images/master_card_logo.png",
-                      width: 50,
+                    Text(
+                      validDate,
+                      style: TextStyle(fontSize: 13, color: white),
                     )
                   ],
                 )
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
