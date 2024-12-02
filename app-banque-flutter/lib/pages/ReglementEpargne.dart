@@ -1,3 +1,4 @@
+import 'package:banking_app/pages/CompteEpargne.dart';
 import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class SavingAccountPage extends StatelessWidget {
           children: [
             Text(
               'Fructifiez votre épargne et disposez de votre argent à tout moment',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 66, 35)),
             ),
             SizedBox(height: 16),
             Text(
@@ -40,11 +41,11 @@ class SavingAccountPage extends StatelessWidget {
             SizedBox(height: 24),
             Text(
               'Ses avantages ?',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: const Color.fromARGB(255, 0, 66, 35)),
             ),
             SizedBox(height: 16),
             _buildAdvantageItem(
-              'Vous pouvez l\'alimenter en ligne par virement ponctuel ou permanent depuis votre compte courant, ou en espèces dans n\'importe quelle agence Cih Bank.',
+              'Vous pouvez l\'alimenter en ligne par virement ponctuel ou permanent depuis votre compte courant, ou en espèces dans n\'importe quelle agence FSA Bank.',
             ),
             _buildAdvantageItem(
               'Votre argent reste disponible et vous pouvez le retirer à tout moment.',
@@ -53,24 +54,30 @@ class SavingAccountPage extends StatelessWidget {
               'Votre épargne constituée génère une rémunération chaque trimestre, calculée en fonction du montant et de la durée de dépôt à un taux fixé par Bank Al Maghrib.',
             ),
             _buildAdvantageItem(
-              'Exclusivement chez Cih Bank, vos opérations sont comptabilisées le jour même de leur exécution, sans date de valeur différente, ce qui vous permet de bénéficier d’une meilleure rémunération.',
+              'Exclusivement chez FSA Bank, vos opérations sont comptabilisées le jour même de leur exécution, sans date de valeur différente, ce qui vous permet de bénéficier d’une meilleure rémunération.',
             ),
             SizedBox(height: 32),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Action à définir pour le bouton
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: primary,
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                ),
-                child: Text(
-                  'OUVRIR UN COMPTE D\'EPARGNE',
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
+           Center(
+            child: ElevatedButton(
+            onPressed: () {
+            Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CompteEpargne(),
             ),
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: primary,
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        ),
+        child: Text(
+          'OUVRIR UN COMPTE D\'EPARGNE',
+          style: TextStyle(fontSize: 16),
+        ),
+      ),
+    )
+
           ],
         ),
       ),
@@ -83,7 +90,7 @@ class SavingAccountPage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.check, color: Colors.green),
+          Icon(Icons.check, color: primary),
           SizedBox(width: 8),
           Expanded(
             child: Text(

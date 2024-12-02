@@ -1,4 +1,5 @@
 import 'package:banking_app/data_json/balance_json.dart';
+import 'package:banking_app/pages/ReglementEpargne.dart';
 import 'package:banking_app/pages/card_page.dart';
 import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class DashbaordPage extends StatefulWidget {
 
   @override
   State<DashbaordPage> createState() => _DashbaordPageState();
+
 }
 
 class _DashbaordPageState extends State<DashbaordPage> {
@@ -28,6 +30,7 @@ class _DashbaordPageState extends State<DashbaordPage> {
   }
 
   Widget getAppBar() {
+    
   return AppBar(
     elevation: 0,
     backgroundColor: const Color.fromARGB(255, 164, 172, 134),
@@ -56,6 +59,8 @@ class _DashbaordPageState extends State<DashbaordPage> {
   Widget getBody() {
    
     var size = MediaQuery.of(context).size;
+       bool isSavingsSelected = false; // Ajout d'un état pour la couleur
+
     return Column(
       children: [
         Container(
@@ -179,6 +184,8 @@ class _DashbaordPageState extends State<DashbaordPage> {
   }
 
   Widget getAccountSection() {
+    bool isSavingsSelected = false; // Ajout d'un état pour la couleur
+
     return Padding(
       padding: const EdgeInsets.only(top: 25, bottom: 40, left: 15, right: 15),
       child: Column(
@@ -324,38 +331,56 @@ class _DashbaordPageState extends State<DashbaordPage> {
           ),
       
       
-     Row(
+
+Row(
   mainAxisAlignment: MainAxisAlignment.end, // Alignement de la Row à droite
   children: [
-    Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8), // Espacement autour du contenu
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 223, 252, 179).withOpacity(0.1), // Couleur de fond du Container
-        borderRadius: BorderRadius.circular(8), // Coins arrondis
-      ),
-      child: Row(
-        children: [
-          Icon(
-            Ionicons.ios_add,
-            size: 16,
-            color: primary, // Couleur de l'icône
+    GestureDetector(
+      onTap: () {
+        setState(() {
+          isSavingsSelected = true; // Modifier l'état pour indiquer la sélection
+        });
+
+        // Naviguer vers la page ReglementEpargne
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => ReglementEpargne(), // Page cible
           ),
-          SizedBox(width: 10), // Espacement entre l'icône et le texte
-          Text(
-            "Compte d'épargne",
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-              color: primary, // Couleur du texte
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8), // Espacement autour du contenu
+        decoration: BoxDecoration(
+          color: isSavingsSelected
+              ? primary.withOpacity(0.2) // Couleur lorsqu'il est sélectionné
+              : const Color.fromARGB(255, 223, 252, 179).withOpacity(0.1), // Couleur par défaut
+          borderRadius: BorderRadius.circular(8), // Coins arrondis
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Ionicons.ios_add,
+              size: 16,
+              color: primary, // Couleur de l'icône
             ),
-          ),
-        ],
+            SizedBox(width: 10), // Espacement entre l'icône et le texte
+            Text(
+              "Compte d'épargne",
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: primary, // Couleur du texte
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   ],
-)
+),
 
-,
+
           SizedBox(
             height: 15,
           ),

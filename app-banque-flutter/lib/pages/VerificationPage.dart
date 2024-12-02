@@ -1,3 +1,4 @@
+import 'package:banking_app/pages/AddMontantEpargne.dart';
 import 'package:banking_app/pages/RechargeFormPage.dart';
 import 'package:banking_app/pages/VirementPage.dart';
 import 'package:banking_app/theme/color.dart';
@@ -87,6 +88,14 @@ class VerificationPage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => RechargeFormPage()),
                         );
+                      } else  if (valeur == 3) {
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddMontantEpargne()),
+                        );
+                      }  else  {
+                        print('diff de 1 et 2 et 3 ');
                       }
                     },
                     style: ElevatedButton.styleFrom(
