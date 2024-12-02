@@ -237,10 +237,6 @@ class _DashbaordPageState extends State<DashbaordPage> {
                           )
                         ],
                       ),
-                      Icon(
-                        Icons.keyboard_arrow_down,
-                        color: primary,
-                      )
                     ],
                   ),
                   SizedBox(

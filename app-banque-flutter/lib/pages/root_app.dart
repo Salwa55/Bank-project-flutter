@@ -4,7 +4,8 @@ import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:banking_app/pages/AccountPage.dart';
-import 'package:banking_app/pages/card_page.dart'; // Import de la page CardPage
+import 'package:banking_app/pages/card_page.dart';
+import 'package:banking_app/pages/ContactSupportPage.dart'; // Import de ContactSupportPage
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
@@ -24,7 +25,6 @@ class _RootAppState extends State<RootApp> {
       body: getBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Naviguer vers CardPage au lieu de changer l'index dans l'IndexedStack
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => CardPage()),
@@ -40,32 +40,21 @@ class _RootAppState extends State<RootApp> {
     );
   }
 
+// Menu  Footer 
+
   Widget getBody() {
     return IndexedStack(
       index: pageIndex,
       children: [
         DashbaordPage(),
-        Center(
-          child: Text(
-            "Chat Page",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
+        ContactSupportPage(), // Affiche ContactSupportPage pour l'onglet "Chat Page"
         Center(
           child: Text(
             "Notification Page",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        Center(
-          child: AccountPage(),
-        ),
-        Center(
-          child: Text(
-            "Card Page",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
+        AccountPage(),
       ],
     );
   }
