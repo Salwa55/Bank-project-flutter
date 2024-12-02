@@ -1,8 +1,10 @@
 import 'package:banking_app/data_json/card_json.dart';
 import 'package:banking_app/data_json/card_operations_json.dart';
+import 'package:banking_app/pages/RechargePage.dart';
 import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:banking_app/pages/VerificationPage.dart';
 
 class CardPage extends StatefulWidget {
   const CardPage({Key? key}) : super(key: key);
@@ -172,48 +174,67 @@ class _CardPageState extends State<CardPage> {
                           return Padding(
                             padding: const EdgeInsets.only(
                                 left: 20, right: 20, bottom: 20),
-                            child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: white,
-                                borderRadius: BorderRadius.circular(15),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: grey.withOpacity(0.1),
-                                    spreadRadius: 10,
-                                    blurRadius: 10,
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      width: 40,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                          color: secondary.withOpacity(0.3),
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                      child: Center(
-                                        child: Icon(
-                                          cardOperations[index]['icon'],
-                                          color: primary,
-                                          size: 20,
+                            child: GestureDetector(
+                              onTap: () {
+                               if (cardOperations[index]['title'] == "Virement") {
+                               Navigator.push(context,MaterialPageRoute(
+                               builder: (_) => VerificationPage(valeur: 1),  // Passer la valeur 1 à VerificationPage
+                                ),
+                             );
+                                } else if(cardOperations[index]['title'] == "Effectuer une recharge"){
+                                  Navigator.push(context,MaterialPageRoute(
+                                  builder: (_) => RechargePage(),
+                                ),
+                             );
+                                  }
+                                  else{
+                                  print(
+                                      "Autre opération : ${cardOperations[index]['title']}");
+                                }
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: white,
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: grey.withOpacity(0.1),
+                                      spreadRadius: 10,
+                                      blurRadius: 10,
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(18.0),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 40,
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            color: secondary.withOpacity(0.3),
+                                            borderRadius:
+                                                BorderRadius.circular(12)),
+                                        child: Center(
+                                          child: Icon(
+                                            cardOperations[index]['icon'],
+                                            color: primary,
+                                            size: 20,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    Text(
-                                      cardOperations[index]['title'],
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600),
-                                    )
-                                  ],
+                                      SizedBox(
+                                        width: 15,
+                                      ),
+                                      Text(
+                                        cardOperations[index]['title'],
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -222,7 +243,6 @@ class _CardPageState extends State<CardPage> {
                       )
                     : Column(
                         children: [
-                          // Exemple de contenu "Historique"
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Text(

@@ -1,10 +1,27 @@
+import 'package:banking_app/pages/VirementPage.dart';
+import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
 
 class VerificationPage extends StatelessWidget {
+  final int valeur; // Le paramètre que vous souhaitez passer
+
+  // Constructeur qui prend un paramètre 'valeur'
+  VerificationPage({Key? key, required this.valeur}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context); // Retourne à la page précédente
+          },
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0, // Enlever l'ombre sous l'AppBar
+      ),
       body: Stack(
         children: [
           // Contenu principal
@@ -19,10 +36,10 @@ class VerificationPage extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      "Verification",
+                      "Vérification",
                       style: TextStyle(
                         fontSize: 20,
-                        color: const Color.fromARGB(255, 164, 172, 134),
+                        color: primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -30,7 +47,6 @@ class VerificationPage extends StatelessWidget {
                 ),
                 Spacer(), // Espace pour descendre les éléments suivants
                 // Texte d'instruction au centre
-               
                 SizedBox(height: 30),
                 // Champ de saisie centré
                 Padding(
@@ -51,17 +67,27 @@ class VerificationPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer(flex: 2), // Grand espace avant le bouton
+                Spacer(),
                 // Bouton Suivant en bas centré
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
+                  padding: const EdgeInsets.only(bottom: 60),
                   child: ElevatedButton(
                     onPressed: () {
-                      // Action pour le bouton Suivant
-                      print("Code soumis");
+                      // Navigation conditionnelle
+                      if (valeur == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => VirementPage()),
+                        );
+                      } else {
+                        // Afficher un message ou rediriger ailleurs
+                        print("Valeur différente de 1");
+                      }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 164, 172, 134), // Couleur du bouton
+                      backgroundColor:
+                          primary, // Couleur du bouton
                       foregroundColor: Colors.white, // Couleur du texte
                       padding:
                           EdgeInsets.symmetric(horizontal: 50, vertical: 15),
@@ -82,11 +108,4 @@ class VerificationPage extends StatelessWidget {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: VerificationPage(),
-  ));
 }

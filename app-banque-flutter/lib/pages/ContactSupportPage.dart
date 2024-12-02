@@ -1,3 +1,4 @@
+import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class ContactSupportPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Contacter support'),
-        backgroundColor: Color.fromARGB(255, 164, 172, 134),
+        backgroundColor: primary,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -58,7 +59,7 @@ class ContactSupportPage extends StatelessWidget {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 164, 172, 134),
+                backgroundColor: primary,
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
               child: Text(
