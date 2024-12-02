@@ -1,3 +1,4 @@
+import 'package:banking_app/pages/RechargeFormPage.dart';
 import 'package:banking_app/pages/VirementPage.dart';
 import 'package:banking_app/theme/color.dart';
 import 'package:flutter/material.dart';
@@ -80,9 +81,12 @@ class VerificationPage extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => VirementPage()),
                         );
-                      } else {
-                        // Afficher un message ou rediriger ailleurs
-                        print("Valeur différente de 1");
+                      } else  if (valeur == 2) {
+                         Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RechargeFormPage()),
+                        );
                       }
                     },
                     style: ElevatedButton.styleFrom(
